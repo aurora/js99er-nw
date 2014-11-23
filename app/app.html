@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="css/app.css" />
+
+        <base href="emu/src/" />
+
+        <script src="util.js"></script>
+        <script src="log.js"></script>
+        <script src="lib/jquery-1.11.0.min.js"></script>
+        <script src="lib/zip/zip.js"></script>
+        <script src="lib/zip/zip-ext.js"></script>
+        <script>zip.workerScriptsPath = "emu/src/lib/zip/";</script>
+        <script src="software/system.js"></script>
+        <script src="software.js"></script>
+        <script src="javagear/sn76489.js"></script>
+        <!-- TI-99/4a components -->
+        <script src="emu/disk.js"></script>
+        <script src="emu/decoder.js"></script>
+        <script src="emu/tms9900.js"></script>
+        <script src="emu/tms9918a.js"></script>
+        <script src="emu/f18a.js"></script>
+        <script src="emu/f18agpu.js"></script>
+        <script src="emu/tms9919.js"></script>
+        <script src="emu/tms5220.js"></script>
+        <script src="emu/memory.js"></script>
+        <script src="emu/cru.js"></script>
+        <script src="emu/keyboard.js"></script>
+        <script src="emu/ti994a.js"></script>
+        <!-- Main -->
+        <script src="settings.js"></script>
+    </head>
+    <body>
+        <canvas id="canvas" width="304" height="240" style="width:608px; height:480px;"></canvas>
+        <script>
+            var settings = new Settings(false);
+            settings.setF18AEnabled(true);
+            var ti994a = new TI994A(document.getElementById("canvas"), {FLOPPY1: new DiskImage("FLOPPY1")}, settings);
+            ti994a.start();
+        </script>
+    </body>
+</html>

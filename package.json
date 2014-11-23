@@ -1,0 +1,17 @@
+{
+    "name":    "js99er-nw",
+    "version": "0.0.1",
+    "author":  "Harald Lapp <harald@octris.org>",
+
+    "main":    "app/app.html",
+
+    "window": {
+        "toolbar":    false,
+        "resizable":  false,
+        "width":      608,
+        "height":     480
+    },
+
+    "dependencies": {
+    }
+}

@@ -69,6 +69,20 @@
     sw_item.submenu = sw_menu;
     menubar.append(sw_item);
 
+    // debug menu
+    var debug_item = new gui.MenuItem({label: 'Debug'});
+    var debug_menu = new gui.Menu();
+
+    debug_menu.append(new gui.MenuItem({
+        label: 'Webkit',
+        click: function() {
+            gui.Window.get().showDevTools();
+        }
+    }));
+
+    debug_item.submenu = debug_menu;
+    menubar.append(debug_item);
+
     // help menu
     var help_item = new gui.MenuItem({label: 'Help'});
     var help_menu = new gui.Menu();

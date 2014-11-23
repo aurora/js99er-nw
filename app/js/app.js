@@ -54,7 +54,6 @@
                     label: programs[i].name,
                     click: (function(path) {
                         return function() {
-                            console.log(path);
                             software.getProgram(path, function(sw) {
                                 if (sw != null) {
                                     ti994a.loadSoftware(sw);

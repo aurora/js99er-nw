@@ -1,0 +1,3 @@
+[submodule "app/emu"]
+	path = app/emu
+	url = https://github.com/Rasmus-M/Js99er.git

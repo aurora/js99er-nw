@@ -21,6 +21,14 @@
         }
     }));
 
+    file_menu.append(new gui.MenuItem({type: 'separator'}));
+    file_menu.append(new gui.MenuItem({
+        label: 'Screenshot',
+        click: function() {
+            $('#save-screenshot').trigger('click');
+        }
+    }));
+
     if (process.platform !== 'darwin') {
         file_menu.append(new gui.MenuItem({type: 'separator'}));
         file_menu.append(new gui.MenuItem({label: 'Quit'}));

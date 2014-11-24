@@ -37,10 +37,33 @@
     <body>
         <canvas id="canvas" width="304" height="240" style="width:608px; height:480px;"></canvas>
         <script>
+        (function() {
             var settings = new Settings(false);
             settings.setF18AEnabled(true);
             var ti994a = new TI994A(document.getElementById("canvas"), {FLOPPY1: new DiskImage("FLOPPY1")}, settings);
             ti994a.start();
+        })();
+        </script>
+        <input id="save-screenshot" type="file" nwsaveas="screenshot.png" style="display: none;" />
+        <script>
+        (function() {
+            var fs = require("fs");
+
+            $('#save-screenshot').change(function() {
+                console.log(fs);
+
+                fs.writeFile(
+                    $(this.val()),
+                    $('#canvas').toDataURL(),
+                    'base64',
+                    function(err) {
+                        if (err) {
+                            alert(err);
+                        }
+                    }
+                );
+            });
+        })();
         </script>
     </body>
 </html>

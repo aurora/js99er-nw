@@ -144,6 +144,12 @@
     var debug_menu = new gui.Menu();
 
     debug_menu.append(new gui.MenuItem({
+        label: 'Emulator',
+        click: function() {
+            gui.Window.open('debug.html', {toolbar: false});
+        }
+    }));
+    debug_menu.append(new gui.MenuItem({
         label: 'Webkit',
         click: function() {
             gui.Window.get().showDevTools();

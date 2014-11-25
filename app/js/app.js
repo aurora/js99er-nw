@@ -77,6 +77,75 @@
     sw_item.submenu = sw_menu;
     menubar.append(sw_item);
 
+    // options menu
+    var option_item = new gui.MenuItem({label: 'Options'});
+    var option_menu = new gui.Menu();
+
+    option_menu.append(new gui.MenuItem({
+        type:    'checkbox',
+        label:   'Sound enabled',
+        checked: settings.isSoundEnabled(),
+        click:   function() {
+            settings.setSoundEnabled(this.checked);
+            ti994a.tms9919.setSoundEnabled(this.checked);
+        }
+    }));
+    option_menu.append(new gui.MenuItem({
+        type:    'checkbox',
+        label:   'Speech hack enabled',
+        checked: settings.isSpeechEnabled(),
+        click:   function() {
+            settings.setSpeechEnabled(this.checked);
+            ti994a.tms5220.setSpeechEnabled(this.checked);
+        }
+    }));
+    option_menu.append(new gui.MenuItem({
+        type:    'checkbox',
+        label:   '32K RAM expansion enabled',
+        checked: settings.is32KRAMEnabled(),
+        click:   function() {
+            settings.set32KRAMEnabled(this.checked);
+            ti994a.tms5220.set32KRAMEnabled(this.checked);
+        }
+    }));
+    option_menu.append(new gui.MenuItem({
+        type:    'checkbox',
+        label:   'F18A enabled',
+        checked: settings.isF18AEnabled(),
+        click:   function() {
+            settings.setF18AEnabled(this.checked);
+            var running = ti994a.isRunning();
+            ti994a.stop();
+            ti994a = new TI994A($('#canvas'), diskImages, settings, onBreakpoint);
+            if (running) {
+                ti994a.start();
+            }
+        }
+    }));
+    option_menu.append(new gui.MenuItem({
+        type:    'checkbox',
+        label:   'Sprite flicker enabled (9918A only)',
+        checked: settings.isFlickerEnabled(),
+        click:   function() {
+            settings.setFlickerEnabled(this.checked);
+            if (ti994a.vdp.setFlicker) {
+                ti994a.vdp.setFlicker(this.checked);
+            }
+        }
+    }));
+    option_menu.append(new gui.MenuItem({
+        type:    'checkbox',
+        label:   'PC keyboard enabled',
+        checked: settings.isPCKeyboardEnabled(),
+        click:   function() {
+            settings.setPCKeyboardEnabled(this.checked);
+            ti994a.keyboard.setPCKeyboardEnabled(this.checked);
+        }
+    }));
+
+    option_item.submenu = option_menu;
+    menubar.append(option_item);
+
     // debug menu
     var debug_item = new gui.MenuItem({label: 'Debug'});
     var debug_menu = new gui.Menu();

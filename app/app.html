@@ -30,6 +30,9 @@
         <script src="emu/ti994a.js"></script>
         <!-- Main -->
         <script src="settings.js"></script>
+        <script>
+        var settings = new Settings(false);
+        </script>
 
         <!-- NW -->
         <script src="../../js/app.js"></script>
@@ -37,8 +40,6 @@
     <body>
         <canvas id="canvas" width="304" height="240" style="width:608px; height:480px;"></canvas>
         <script>
-        var settings = new Settings(false);
-        settings.setF18AEnabled(true);
         var ti994a = new TI994A(document.getElementById("canvas"), {FLOPPY1: new DiskImage("FLOPPY1")}, settings);
         ti994a.start();
         </script>

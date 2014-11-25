@@ -14,13 +14,6 @@
     var file_item = new gui.MenuItem({label: 'File'});
     var file_menu = new gui.Menu();
 
-    file_menu.append(new gui.MenuItem({
-        label: 'Preferences',
-        click: function () {
-            gui.Window.open('prefs.html', {toolbar: false});
-        }
-    }));
-
     file_menu.append(new gui.MenuItem({type: 'separator'}));
     file_menu.append(new gui.MenuItem({
         label: 'Screenshot',

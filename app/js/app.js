@@ -2,6 +2,19 @@ var gui = require('nw.gui');
 var fs = require('fs');
 
 var software = new Software();
+software.loadRPKModuleFromURL = function(module, onSuccess, onError) {
+    var file = new File(process.cwd() + '/emu/src/' + module, module);
+
+    software.loadRPKModuleFromFile(
+        file,
+        function(cart) {
+            ti994a.loadSoftware(cart);
+        },
+        function(err) {
+            alert(err);
+        }
+    );
+}
 
 function App() {
 }

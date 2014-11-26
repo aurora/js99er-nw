@@ -40,6 +40,9 @@
         <script src="../../js/debug.js"></script>
     </head>
     <body>
+        <form style="display: none;">
+            <input id="save-screenshot" type="file" nwsaveas="screenshot.png" />
+        </form>
         <canvas id="canvas" width="304" height="240" style="width:608px; height:480px;"></canvas>
         <script>
         var app = new App();
@@ -51,16 +54,13 @@
         global.emu = {
             debug: new Debug(ti994a)
         }
-        </script>
-        <input id="save-screenshot" type="file" nwsaveas="screenshot.png" style="display: none;" />
-        <script>
-        (function() {
-            var fs = require("fs");
 
-            $('#save-screenshot').change(function() {
-                app.createScreenshot($(this).val());
-            });
-        })();
+        // screenshot tool
+        $('#save-screenshot').change(function() {
+            app.createScreenshot($(this).val());
+            
+            $(this).parent().get(0).reset();
+        });
         </script>
     </body>
 </html>

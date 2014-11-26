@@ -146,7 +146,11 @@
     debug_menu.append(new gui.MenuItem({
         label: 'Emulator',
         click: function() {
-            gui.Window.open('debug.html', {toolbar: false});
+            var win = gui.Window.open('debug.html', {toolbar: false});
+            win.on('close', function() {
+                global.emu.debug.setEnable(false);
+                win.close(true);
+            });
         }
     }));
     debug_menu.append(new gui.MenuItem({

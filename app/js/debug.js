@@ -40,6 +40,7 @@ Debug.prototype.setEnable = (function() {
             }, 100);
         } else if (!enable && interval) {
             window.clearInterval(interval);
+            interval = null;
         }
     }
 })();

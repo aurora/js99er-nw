@@ -6,11 +6,12 @@ var software = new Software();
 function App() {
 }
 
-App.prototype.openRpkModule = function(filename) {
-    var file = fs.readFile(filename);
-    
-    software.loadRPKModuleFromFile(file,
+App.prototype.openRpkModule = function(file) {
+    console.log(file);
+    software.loadRPKModuleFromFile(
+        file,
         function(cart) {
+            console.log(cart);
             ti994a.loadSoftware(cart);
         },
         function(err) {

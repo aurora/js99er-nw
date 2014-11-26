@@ -48,7 +48,7 @@
         <script>
         var app = new App();
         app.buildMenu();
-        
+
         var ti994a = new TI994A(document.getElementById("canvas"), {FLOPPY1: new DiskImage("FLOPPY1")}, settings);
         ti994a.start();
 
@@ -59,12 +59,12 @@
         // file dialog tools
         $('#save-screenshot').change(function() {
             app.createScreenshot($(this).val());
-            
+
             $(this).parent().get(0).reset();
         });
         $('#open-rpk-module').change(function() {
-            app.openRpkModule($(this).val());
-            
+            app.openRpkModule(this.files[0]);
+
             $(this).parent().get(0).reset();
         });
         </script>

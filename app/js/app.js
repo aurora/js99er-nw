@@ -1,7 +1,22 @@
 var gui = require('nw.gui');
 var fs = require('fs');
 
+var software = new Software();
+
 function App() {
+}
+
+App.prototype.openRpkModule = function(filename) {
+    var file = fs.readFile(filename);
+    
+    software.loadRPKModuleFromFile(file,
+        function(cart) {
+            ti994a.loadSoftware(cart);
+        },
+        function(err) {
+            alert(err);
+        }
+    );
 }
 
 App.prototype.createScreenshot = function(filename) {
@@ -33,9 +48,15 @@ App.prototype.buildMenu = function() {
     var file_item = new gui.MenuItem({label: 'File'});
     var file_menu = new gui.Menu();
 
+    file_menu.append(new gui.MenuItem({
+        label: 'Open RPK module...',
+        click: function() {
+            $('#open-rpk-module').trigger('click');
+        }
+    }));
     file_menu.append(new gui.MenuItem({type: 'separator'}));
     file_menu.append(new gui.MenuItem({
-        label: 'Save screenshot ...',
+        label: 'Save screenshot...',
         click: function() {
             $('#save-screenshot').trigger('click');
         }
@@ -52,8 +73,6 @@ App.prototype.buildMenu = function() {
     // software menu
     var sw_item = new gui.MenuItem({label: 'Software'});
     var sw_menu = new gui.Menu();
-
-    var software = new Software();
 
     (function buildPreloads(menu, programs, path) {
         path = path || '';

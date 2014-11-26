@@ -41,6 +41,7 @@
     </head>
     <body>
         <form style="display: none;">
+            <input id="open-rpk-module" type="file" accept="*.rpk" />
             <input id="save-screenshot" type="file" nwsaveas="screenshot.png" />
         </form>
         <canvas id="canvas" width="304" height="240" style="width:608px; height:480px;"></canvas>
@@ -55,9 +56,14 @@
             debug: new Debug(ti994a)
         }
 
-        // screenshot tool
+        // file dialog tools
         $('#save-screenshot').change(function() {
             app.createScreenshot($(this).val());
+            
+            $(this).parent().get(0).reset();
+        });
+        $('#open-rpk-module').change(function() {
+            app.openRpkModule($(this).val());
             
             $(this).parent().get(0).reset();
         });

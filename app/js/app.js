@@ -1,6 +1,25 @@
-(function() {
-    var gui = require('nw.gui');
+var gui = require('nw.gui');
+var fs = require('fs');
 
+function App() {
+}
+
+App.prototype.createScreenshot = function(filename) {
+    var url = $('#canvas').get(0).toDataURL();
+
+    fs.writeFile(
+        filename,
+        url.replace(/^data:image\/(png|jpg|jpeg);base64,/, ''),
+        'base64',
+        function(err) {
+            if (err) {
+                alert(err);
+            }
+        }
+    );
+}
+
+App.prototype.buildMenu = function() {
     var menubar = new gui.Menu({type: 'menubar'});
 
     if (process.platform === 'darwin') {
@@ -174,4 +193,4 @@
 
     // attach
     gui.Window.get().menu = menubar;
-})();
+}

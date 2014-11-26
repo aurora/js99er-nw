@@ -35,7 +35,7 @@ App.prototype.buildMenu = function() {
 
     file_menu.append(new gui.MenuItem({type: 'separator'}));
     file_menu.append(new gui.MenuItem({
-        label: 'Screenshot',
+        label: 'Save screenshot ...',
         click: function() {
             $('#save-screenshot').trigger('click');
         }

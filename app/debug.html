@@ -1,80 +1,15 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="css/app.css" />
+        <title>Debugger</title>
+        <link rel="stylesheet" type="text/css" href="css/debug.css" />
         <script src="emu/src/lib/jquery-1.11.0.min.js"></script>
-        <script src="emu/src/disassembler.js"></script>
-        <script src="emu/src/emu/decoder.js"></script>
     </head>
     <body>
         <pre id="status"></pre>
         <pre id="memory"></pre>
         <script>
-        global.emu.debug.setEnable(true, $('#status'));
-
-        // window.setInterval(function() {
-        //     var $memory = $("#memory");
-        //     var viewObj;
-        //     var pc = ti994a.tms9900.getPC();
-        //     if (ti994a.isRunning()) {
-        //         // Running
-        //         if (memoryView == 0) {
-        //             // Disassemble
-        //             if (memoryType == 0) {
-        //                 // CPU
-        //                 disassembler.setMemory(ti994a.memory);
-        //                 viewObj = disassembler.disassemble(pc, null, 20, pc);
-        //             }
-        //             else {
-        //                 // VDP
-        //                 disassembler.setMemory(ti994a.vdp);
-        //                 viewObj = disassembler.disassemble(debuggerAddress || 0, null, 20, pc);
-        //             }
-        //         }
-        //         else {
-        //             // Hex view
-        //             if (memoryType == 0) {
-        //                 // CPU
-        //                 viewObj = ti994a.memory.hexView(debuggerAddress || 0x8300, 320, debuggerAddress);
-        //             }
-        //             else {
-        //                 // VDP
-        //                 viewObj = ti994a.vdp.hexView(debuggerAddress || 0, 320, debuggerAddress);
-        //             }
-        //         }
-        //     }
-        //     else {
-        //         // Stopped
-        //         if (memoryView == 0) {
-        //             // Disassemble
-        //             if (memoryType == 0) {
-        //                 // CPU
-        //                 disassembler.setMemory(ti994a.memory);
-        //                 viewObj = disassembler.disassemble(0, 0x10000, null, debuggerAddress || pc);
-        //             }
-        //             else {
-        //                 // VDP
-        //                 disassembler.setMemory(ti994a.vdp);
-        //                 viewObj = disassembler.disassemble(0, 0x4000, null, debuggerAddress || 0);
-        //             }
-        //         }
-        //         else {
-        //             // Hex view
-        //             if (memoryType == 0) {
-        //                 // CPU
-        //                 viewObj = ti994a.memory.hexView(0, 0x10000, debuggerAddress || pc);
-        //             }
-        //             else {
-        //                 // VDP
-        //                 viewObj = ti994a.vdp.hexView(0, 0x4000, debuggerAddress || 0);
-        //             }
-        //         }
-        //     }
-        //     $memory.text(viewObj.text);
-        //     if (viewObj.anchorLine) {
-        //         $memory.scrollTop(viewObj.anchorLine * 19);
-        //     }
-        // }, 100);
+        global.emu.debug.setEnable(true, $('#status'), $('#memory'));
         </script>
     </body>
 </html>

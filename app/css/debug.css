@@ -1,0 +1,17 @@
+pre {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #eee;
+    color: #333;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 19px;
+    overflow: auto;
+}
+#status {
+    height: 160px;
+}
+#memory {
+    height: 394px;
+}

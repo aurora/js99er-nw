@@ -42,6 +42,9 @@
     <body>
         <canvas id="canvas" width="304" height="240" style="width:608px; height:480px;"></canvas>
         <script>
+        var app = new App();
+        app.buildMenu();
+        
         var ti994a = new TI994A(document.getElementById("canvas"), {FLOPPY1: new DiskImage("FLOPPY1")}, settings);
         ti994a.start();
 
@@ -55,18 +58,7 @@
             var fs = require("fs");
 
             $('#save-screenshot').change(function() {
-                console.log(fs);
-
-                fs.writeFile(
-                    $(this.val()),
-                    $('#canvas').toDataURL(),
-                    'base64',
-                    function(err) {
-                        if (err) {
-                            alert(err);
-                        }
-                    }
-                );
+                app.createScreenshot($(this).val());
             });
         })();
         </script>

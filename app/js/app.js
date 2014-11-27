@@ -134,6 +134,36 @@ App.prototype.buildMenu = function() {
     sw_item.submenu = sw_menu;
     menubar.append(sw_item);
 
+    // run menu
+    var run_item = new gui.MenuItem({label: 'Run'});
+    var run_menu = new gui.Menu();
+
+    run_menu.append(new gui.MenuItem({
+        label:   'Start',
+        click:   function() {
+            ti994a.start(false);
+        }
+    }));
+    run_menu.append(new gui.MenuItem({
+        label:   'Stop',
+        click:   function() {
+            ti994a.stop();
+        }
+    }));
+    run_menu.append(new gui.MenuItem({
+        label:   'Reset',
+        click:   function() {
+            ti994a.reset(true);
+
+            if (!ti994a.isRunning()) {
+                ti994a.start(false);
+            }
+        }
+    }));
+
+    run_item.submenu = run_menu;
+    menubar.append(run_item);
+
     // options menu
     var option_item = new gui.MenuItem({label: 'Options'});
     var option_menu = new gui.Menu();

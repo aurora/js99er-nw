@@ -46,11 +46,17 @@
         </form>
         <canvas id="canvas" width="304" height="240" style="width:608px; height:480px;"></canvas>
         <script>
+        var diskImages = {
+            FLOPPY1: new DiskImage("FLOPPY1"),
+            FLOPPY2: new DiskImage("FLOPPY2"),
+            FLOPPY3: new DiskImage("FLOPPY3")
+        };
+
+        var ti994a = new TI994A($('#canvas').get(0), diskImages, settings);
+        ti994a.start();
+
         var app = new App();
         app.buildMenu();
-
-        var ti994a = new TI994A(document.getElementById("canvas"), {FLOPPY1: new DiskImage("FLOPPY1")}, settings);
-        ti994a.start();
 
         global.emu = {
             debug: new Debug(ti994a)

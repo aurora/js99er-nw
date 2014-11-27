@@ -138,24 +138,33 @@ App.prototype.buildMenu = function() {
     var run_item = new gui.MenuItem({label: 'Run'});
     var run_menu = new gui.Menu();
 
-    run_menu.append(new gui.MenuItem({
+    run_menu.append(run_item_start = new gui.MenuItem({
         label:   'Start',
+        enabled: !ti994a.isRunning(),
         click:   function() {
             ti994a.start(false);
         }
     }));
-    run_menu.append(new gui.MenuItem({
+    run_menu.append(run_item_stop = new gui.MenuItem({
         label:   'Stop',
+        enabled: ti994a.isRunning(),
         click:   function() {
+            run_item_start.enabled = true;
+            run_item_stop.enabled = false;
+
             ti994a.stop();
         }
     }));
-    run_menu.append(new gui.MenuItem({
+    run_menu.append(run_item_reset = new gui.MenuItem({
         label:   'Reset',
+        enabled: ti994a.isRunning(),
         click:   function() {
             ti994a.reset(true);
 
             if (!ti994a.isRunning()) {
+                run_item_start.enabled = false;
+                run_item_stop.enabled = true;
+
                 ti994a.start(false);
             }
         }

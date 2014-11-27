@@ -203,7 +203,7 @@ App.prototype.buildMenu = function() {
             settings.setF18AEnabled(this.checked);
             var running = ti994a.isRunning();
             ti994a.stop();
-            ti994a = new TI994A($('#canvas'), diskImages, settings, onBreakpoint);
+            ti994a = new TI994A($('#canvas').get(0), diskImages, settings);
             if (running) {
                 ti994a.start();
             }

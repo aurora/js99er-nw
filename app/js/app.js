@@ -19,6 +19,20 @@ software.loadRPKModuleFromURL = function(module, onSuccess, onError) {
 function App() {
 }
 
+App.prototype.processArgv = function() {
+    if (gui.App.argv.length > 0) {
+        var file = gui.App.argv[0];
+
+        var ext = file.split('.').pop();
+
+        if (ext != null && (ext.toLowerCase() == "rpk" || ext.toLowerCase() == "zip")) {
+            if (fs.existsSync(file)) {
+                this.openRpkModule(new File(file, require('path').basename(file)));
+            }
+        }
+    }
+}
+
 App.prototype.openRpkModule = function(file) {
     software.loadRPKModuleFromFile(
         file,

@@ -30,6 +30,12 @@ App.prototype.processArgv = function() {
                 this.openRpkModule(new File(file, require('path').basename(file)));
             }
         }
+    } else {
+        software.getProgram('0', function(sw) {
+            if (sw != null) {
+                ti994a.loadSoftware(sw);
+            }
+        });
     }
 }
 

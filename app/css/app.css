@@ -3,3 +3,9 @@ html, body {
     padding: 0;
     overflow: hidden;
 }
+#canvas {
+    image-rendering: crisp-edges;
+}
+.pixelated {
+    image-rendering: pixelated;
+}

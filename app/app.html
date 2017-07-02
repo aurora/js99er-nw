@@ -68,7 +68,6 @@
         };
 
         var ti994a = new TI994A($('#canvas').get(0), diskImages, settings);
-        ti994a.start();
 
         var app = new App();
         app.buildMenu();
@@ -91,6 +90,9 @@
 
         // process cli arguments
         app.processArgv();
+
+        // start TI
+        ti994a.start();
         </script>
     </body>
 </html>

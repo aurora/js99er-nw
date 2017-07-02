@@ -21,7 +21,13 @@
   },
   "build": {
     "nwVersion": "0.14.7",
-    "output": "../dist"
+    "output": "../dist",
+    "mac": {
+      "icon": "../assets/icons/ti994a.icns"
+    },
+    "win": {
+      "icon": "../assets/icons/ti994a.ico"
+    }
   },
   "scripts": {
     "dist": "build --tasks win-x86,win-x64,linux-x86,linux-x64,mac-x64 --mirror https://dl.nwjs.io/ .",

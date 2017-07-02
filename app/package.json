@@ -2,7 +2,7 @@
   "name": "js99er-nw",
   "description": "This is a node-webkit wrapper for the great js99er TI-99/4A emulator by Rasmus Moustgaard.",
   "license": "GPL-2.0",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Harald Lapp <harald@octris.org>",
   "repository": {
     "type": "git",

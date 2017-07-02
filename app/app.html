@@ -68,6 +68,7 @@
         };
 
         var ti994a = new TI994A($('#canvas').get(0), diskImages, settings);
+        var sound = new Sound(settings.isSoundEnabled(), ti994a.tms9919, ti994a.tms5220);
 
         var app = new App();
         app.buildMenu();

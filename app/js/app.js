@@ -180,6 +180,15 @@ App.prototype.buildMenu = function() {
     menubar.append(run_item);
 
     // options menu
+    function tiReset() {
+        var running = ti994a.isRunning();
+        ti994a.stop();
+        ti994a = new TI994A($('#canvas').get(0), diskImages, settings);
+        if (running) {
+            ti994a.start();
+        }
+    }
+
     var option_item = new gui.MenuItem({label: 'Options'});
     var option_menu = new gui.Menu();
 
@@ -189,12 +198,12 @@ App.prototype.buildMenu = function() {
         checked: settings.isSoundEnabled(),
         click:   function() {
             settings.setSoundEnabled(this.checked);
-            ti994a.tms9919.setSoundEnabled(this.checked);
+            sound.setSoundEnabled(state);
         }
     }));
     option_menu.append(new gui.MenuItem({
         type:    'checkbox',
-        label:   'Speech hack enabled',
+        label:   'Speech enabled',
         checked: settings.isSpeechEnabled(),
         click:   function() {
             settings.setSpeechEnabled(this.checked);
@@ -212,27 +221,43 @@ App.prototype.buildMenu = function() {
     }));
     option_menu.append(new gui.MenuItem({
         type:    'checkbox',
-        label:   'F18A enabled',
-        checked: settings.isF18AEnabled(),
+        label:   'SAMS enabled',
+        checked: settings.isAMSEnabled(),
         click:   function() {
-            settings.setF18AEnabled(this.checked);
-            var running = ti994a.isRunning();
-            ti994a.stop();
-            ti994a = new TI994A($('#canvas').get(0), diskImages, settings);
-            if (running) {
-                ti994a.start();
-            }
+            settings.setAMSEnabled(this.checked);
+            ti994a.memory.setAMSEnabled(this.checked);
+            tiReset();
         }
     }));
     option_menu.append(new gui.MenuItem({
         type:    'checkbox',
-        label:   'Sprite flicker enabled (9918A only)',
+        label:   'GRAM enabled',
+        checked: settings.isGRAMEnabled(),
+        click:   function() {
+            settings.setGRAMEnabled(this.checked);
+            ti994a.memory.setGRAMEnabled(this.checked);
+            tiReset();
+        }
+    }));
+    option_menu.append(new gui.MenuItem({
+        type:    'checkbox',
+        label:   '4 sprites per line limitation enabled',
         checked: settings.isFlickerEnabled(),
         click:   function() {
             settings.setFlickerEnabled(this.checked);
             if (ti994a.vdp.setFlicker) {
                 ti994a.vdp.setFlicker(this.checked);
             }
+        }
+    }));
+    option_menu.append(new gui.MenuItem({
+        type:    'checkbox',
+        label:   'F18A enabled',
+        checked: settings.isF18AEnabled(),
+        click:   function() {
+            settings.setF18AEnabled(this.checked);
+            ti994a.setVDP(settings);
+            window.setTimeout(function() { tiReset(); }, 500);
         }
     }));
     option_menu.append(new gui.MenuItem({
@@ -244,6 +269,34 @@ App.prototype.buildMenu = function() {
             ti994a.keyboard.setPCKeyboardEnabled(this.checked);
         }
     }));
+    option_menu.append(new gui.MenuItem({
+        type:    'checkbox',
+        label:   'Map arrow keys to Fctn+SDEX enabled',
+        checked: settings.isMapArrowKeysToFctnSDEXEnabled,
+        click:   function() {
+            settings.setMapArrowKeysToFctnSDEXEnabled(this.checked);
+            ti994a.keyboard.setMapArrowKeysToFctnSDEXEnabled(this.checked);
+        }
+    }));
+    option_menu.append(new gui.MenuItem({
+        type:    'checkbox',
+        label:   'Google drives (GDR1, GDR2, GDR3) enabled',
+        checked: settings.isGoogleDriveEnabled(),
+        click:   function() {
+            settings.setGoogleDriveEnabled(this.checked);
+            ti994a.setGoogleDrive(settings);
+            tiReset();
+        }
+    }));
+/*    option_menu.append(new gui.MenuItem({
+        type:    'checkbox',
+        label:   'Pixelated image (if supported by browser)',
+        checked: settings.isPixelatedEnabled(),
+        click:   function() {
+            settings.setPixelatedEnabled(this.checked);
+            $('#canvas').toggleClass('pixelated', this.checked);
+        }
+    })); */
 
     option_item.submenu = option_menu;
     menubar.append(option_item);
